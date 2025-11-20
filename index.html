@@ -1,66 +1,35 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>線上狼人殺（Apps Script）</title>
-  <?!= HtmlService.createHtmlOutputFromFile('style').getContent(); ?>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>線上狼人殺</title>
+<?!= HtmlService.createHtmlOutputFromFile('style').getContent(); ?>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>線上狼人殺（Apps Script 版）</h1>
-      <p class="small">小型多人遊戲，使用 Drive 儲存頭像與 Properties 儲存房間狀態（Demo）</p>
-    </header>
+<div class="wrap">
+<h1>線上狼人殺</h1>
+<section id="lobby">
+<input id="name" placeholder="輸入名字">
+<input id="avatarFile" type="file" accept="image/*">
+<button id="createBtn">建立房間</button>
+<input id="roomInput" placeholder="房間 ID">
+<button id="joinBtn">加入房間</button>
+</section>
 
-    <section id="lobby" class="panel">
-      <div class="flex">
-        <input id="name" placeholder="輸入你的名字" />
-        <input id="avatarFile" type="file" accept="image/*" />
-        <button id="createBtn" class="btn">建立房間</button>
-        <input id="roomInput" placeholder="房間 ID（加入用）" />
-        <button id="joinBtn" class="btn">加入房間</button>
-      </div>
-      <div class="small">建立房間會成為房主。房主負責分配身分、計算夜晚/投票結果。</div>
-    </section>
-
-    <section id="roomPanel" class="panel" style="display:none">
-      <div class="flex" style="justify-content:space-between;">
-        <div><b>房間：</b><span id="roomLabel">-</span></div>
-        <div class="flex">
-          <button id="assignBtn" class="btn">分配身分</button>
-          <button id="resolveNightBtn" class="btn">房主：執行夜晚結果</button>
-          <button id="resolveVotesBtn" class="btn">房主：計算投票</button>
-          <button id="leaveBtn" class="btn warn">離開房間</button>
-        </div>
-      </div>
-
-      <div style="margin-top:12px" class="flex">
-        <div style="flex:1">
-          <h3>玩家</h3>
-          <div id="players" class="players"></div>
-        </div>
-
-        <div style="width:320px;">
-          <h3>聊天室</h3>
-          <div id="chatBox" class="chatBox"></div>
-          <div class="flex" style="margin-top:8px">
-            <input id="chatInput" placeholder="聊天..." style="flex:1" />
-            <button id="sendChatBtn" class="btn">送出</button>
-          </div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px;">
-        <h3>遊戲狀態</h3>
-        <div id="gameState" class="small">-</div>
-        <div id="actionArea"></div>
-      </div>
-    </section>
-
-  </div>
-
-  <?!= HtmlService.createHtmlOutputFromFile('script').getContent(); ?>
+<section id="roomPanel" style="display:none">
+<div>
+<b>房間：</b><span id="roomLabel"></span>
+<button id="assignBtn">分配身分</button>
+<button id="leaveBtn">離開房間</button>
+</div>
+<div id="players"></div>
+<div id="chatBox" class="chatBox"></div>
+<input id="chatInput"><button id="sendChatBtn">送出</button>
+<div id="gameState"></div>
+<div id="actionArea"></div>
+</section>
+</div>
+<?!= HtmlService.createHtmlOutputFromFile('script').getContent(); ?>
 </body>
 </html>
